@@ -1,5 +1,4 @@
 version: '3'
-
 networks:
   frontend:
     driver: ${NETWORKS_DRIVER}
@@ -41,6 +40,8 @@ volumes:
     driver: ${VOLUMES_DRIVER}
 
 services:
+
+    
 
 ### Workspace Utilities ##################################
     workspace:
@@ -118,6 +119,8 @@ services:
         - backend
       links:
         - docker-in-docker
+      depends_on:
+       - ffmpeg
 
 ### PHP-FPM ##############################################
     php-fpm:
@@ -175,6 +178,10 @@ services:
         - backend
       links:
         - docker-in-docker
+
+### FFMPeg ###############################################
+    ffmpeg:
+      image: jrottenberg/ffmpeg:3.3
 
 ### PHP Worker ############################################
     php-worker:
